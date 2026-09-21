@@ -1,0 +1,475 @@
+// This file can be included several times.
+
+#ifndef MACRO_CONFIG_INT
+#error "The config macros must be defined"
+#define MACRO_CONFIG_INT(Tcme, ScriptName, Def, Min, Max, Save, Desc) ;
+#define MACRO_CONFIG_COL(Tcme, ScriptName, Def, Save, Desc) ;
+#define MACRO_CONFIG_STR(Tcme, ScriptName, Len, Def, Save, Desc) ;
+#endif
+
+#if defined(CONF_FAMILY_WINDOWS)
+MACRO_CONFIG_INT(TcAllowAnyRes, tc_allow_any_res, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Whether to allow any resolution in game when zoom is allowed (buggy on Windows)")
+#else
+MACRO_CONFIG_INT(TcAllowAnyRes, tc_allow_any_res, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Whether to allow any resolution in game when zoom is allowed (buggy on Windows)")
+#endif
+
+MACRO_CONFIG_INT(TcShowChatClient, tc_show_chat_client, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show chat messages from the client such as echo")
+
+MACRO_CONFIG_INT(TcShowFrozenText, tc_frozen_tees_text, 0, 0, 2, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show how many tees in your team are currently frozen. (0 - off, 1 - show alive, 2 - show frozen)")
+MACRO_CONFIG_INT(TcShowFrozenHud, tc_frozen_tees_hud, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show frozen tee HUD")
+MACRO_CONFIG_INT(TcShowFrozenHudSkins, tc_frozen_tees_hud_skins, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Use ninja skin, or darkened skin for frozen tees on hud")
+
+MACRO_CONFIG_INT(TcFrozenHudTeeSize, tc_frozen_tees_size, 15, 8, 20, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Size of tees in frozen tee hud. (Default : 15)")
+MACRO_CONFIG_INT(TcFrozenMaxRows, tc_frozen_tees_max_rows, 1, 1, 6, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Maximum number of rows in frozen tee HUD display")
+MACRO_CONFIG_INT(TcFrozenHudTeamOnly, tc_frozen_tees_only_inteam, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Only render frozen tee HUD display while in team")
+
+MACRO_CONFIG_INT(TcNameplatePingCircle, tc_nameplate_ping_circle, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Shows a circle to indicate ping in the nameplate")
+MACRO_CONFIG_INT(TcNameplateCountry, tc_nameplate_country, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Shows the country flag in the nameplate")
+MACRO_CONFIG_INT(TcNameplateSkins, tc_nameplate_skins, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Shows skin names in nameplates, good for finding missing skins")
+
+// Flying name plates: nameplates float like kites attached to the player, trailing
+// behind movement and catching up smoothly (ported from BestClient).
+MACRO_CONFIG_INT(TcFlyingNamePlates, tc_flying_name_plates, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Render name plates like flying kites attached to players")
+MACRO_CONFIG_INT(TcFlyingNamePlatesHideLine, tc_flying_name_plates_hide_line, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Hide the line between players and flying name plates")
+MACRO_CONFIG_INT(TcFlyingNamePlatesLift, tc_flying_name_plates_lift, 28, 0, 120, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Extra vertical lift for flying name plates")
+MACRO_CONFIG_INT(TcFlyingNamePlatesDrag, tc_flying_name_plates_drag, 52, 0, 200, CFGFLAG_CLIENT | CFGFLAG_SAVE, "How far flying name plates trail behind movement")
+MACRO_CONFIG_INT(TcFlyingNamePlatesFollow, tc_flying_name_plates_follow, 40, 1, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "How quickly flying name plates catch up to their target position")
+
+MACRO_CONFIG_INT(TcFakeCtfFlags, tc_fake_ctf_flags, 0, 0, 2, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Shows fake CTF flags on people (0 = off, 1 = red, 2 = blue)")
+
+MACRO_CONFIG_INT(TcLimitMouseToScreen, tc_limit_mouse_to_screen, 0, 0, 2, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Limit mouse to screen boundaries")
+MACRO_CONFIG_INT(TcScaleMouseDistance, tc_scale_mouse_distance, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Improve mouse precision by scaling max distance to 1000")
+
+MACRO_CONFIG_INT(TcHammerRotatesWithCursor, tc_hammer_rotates_with_cursor, 0, 0, 2, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Allow your hammer to rotate like other weapons")
+
+MACRO_CONFIG_INT(TcMiniVoteHud, tc_mini_vote_hud, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "When enabled makes the vote UI small")
+
+// Anti Latency Tools
+MACRO_CONFIG_INT(TcRemoveAnti, tc_remove_anti, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Removes some amount of antiping & player prediction in freeze")
+MACRO_CONFIG_INT(TcUnfreezeLagTicks, tc_remove_anti_ticks, 5, 0, 20, CFGFLAG_CLIENT | CFGFLAG_SAVE, "The biggest amount of prediction ticks that are removed")
+MACRO_CONFIG_INT(TcUnfreezeLagDelayTicks, tc_remove_anti_delay_ticks, 25, 5, 150, CFGFLAG_CLIENT | CFGFLAG_SAVE, "How many ticks it takes to remove the maximum prediction after being frozen")
+
+MACRO_CONFIG_INT(TcUnpredOthersInFreeze, tc_unpred_others_in_freeze, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Dont predict other players if you are frozen")
+MACRO_CONFIG_INT(TcPredMarginInFreeze, tc_pred_margin_in_freeze, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Enable changing prediction margin while frozen")
+MACRO_CONFIG_INT(TcPredMarginInFreezeAmount, tc_pred_margin_in_freeze_amount, 15, 0, 2000, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Set what your prediction margin while frozen should be")
+
+MACRO_CONFIG_INT(TcPredictTpTiles, tc_predicttptiles, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Whether to predict teleport tiles")
+MACRO_CONFIG_INT(TcPredictLasers, tc_predict_lasers, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Whether to predict map lasers (rotation and length of beams)")
+
+MACRO_CONFIG_INT(TcPredictionMarginAdjust, tc_prediction_margin_adjust, 0, 0, 300, CFGFLAG_CLIENT | CFGFLAG_SAVE, "The maximum amount to adjust the prediction margin upwards on lag spikes (0 to disable)")
+
+MACRO_CONFIG_INT(TcShowpredShowPeak, tc_showpred_showpeak, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Whether to show the peak prediction time (requires cl_showpred)")
+MACRO_CONFIG_INT(TcShowpredColor, tc_showpred_color, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Whether to color the prediction time display based on the difference between the current prediction time and the average (requires cl_showpred)")
+MACRO_CONFIG_INT(TcShowpredLength, tc_showpred_length, 50, 1, 50, CFGFLAG_CLIENT | CFGFLAG_SAVE, "How long prediction times are tracked for tc_showpred_showpeak and tc_showpred_color (1/10)")
+MACRO_CONFIG_INT(TcShowpredExtremePred, tc_showpred_extremepred, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Attempts to exaggerate changes in ping for tc_showpred_color (probably badly)")
+MACRO_CONFIG_INT(TcShowpredWorstDiff, tc_showpred_worstdiff, 10, 1, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "The difference in prediction time that produces the most red color (requires tc_showpred_color)")
+
+MACRO_CONFIG_INT(TcPlayerIdleAura, tc_idle_aura, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show an aura around your tee when idle")
+MACRO_CONFIG_INT(TcPlayerIdleAuraTimer, tc_idle_aura_timer, 2, 2, 30, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Seconds of inactivity before the idle aura appears")
+MACRO_CONFIG_INT(TcIdleAuraType, tc_idle_aura_type, 1, 1, 3, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Idle aura style (1 = Starfall, 3 = Clock)")
+MACRO_CONFIG_INT(TcToggleAuraParticlesNum, tc_toggle_aura_parsicle_num, 12, 0, 300, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Number of idle aura particles")
+MACRO_CONFIG_INT(TcToggleAuraRadius, tc_toggle_aura_radius, 30, 0, 600, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Radius of the idle aura")
+
+MACRO_CONFIG_INT(TcHoverMessage, tc_hover_message, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show system messages as hover notifications")
+MACRO_CONFIG_INT(TcHoverOnly, tc_hover_only, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show system messages only as hover notifications, not in chat")
+MACRO_CONFIG_INT(TcReactBypass, tc_react_bypass, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Re-apply mute/war/heart when a listed player changes their nick")
+MACRO_CONFIG_INT(TcHookCollOverlay, tc_hook_coll_overlay, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Draw the hook collision line to its full length, even through tiles and tees")
+MACRO_CONFIG_INT(TcChatFixLayout, tc_chat_fix_layout, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Suggest a chat command typed in a wrong keyboard layout")
+MACRO_CONFIG_INT(TcAntiUnspectate, tc_anti_unspectate, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Ask for confirmation when unspeccing inside another tee")
+MACRO_CONFIG_INT(TcMuteMessagesConsole, tc_mute_messages_console, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show messages from muted players in the console")
+MACRO_CONFIG_INT(TcHoverMessagesHistory, tc_hover_messages_history, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show hover notification history while chat is open")
+MACRO_CONFIG_INT(TcHoverMessagesMaxHistory, tc_hover_message_max_history, 15, 1, 40, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Maximum hover notification history entries")
+MACRO_CONFIG_INT(TcHoverMessagesMaxNotifications, tc_hover_message_max_notifications, 10, 1, 40, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Maximum active hover notifications")
+MACRO_CONFIG_INT(TcHoverPlacing, tc_hover_placing, 0, 0, 3, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Where hover notifications appear (0 = top-right, 1 = top-left, 2 = bottom-right, 3 = bottom-left)")
+
+MACRO_CONFIG_INT(TcAutoNotifyOnJoin, tc_auto_notify_on_join, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Notify when a player on your list joins")
+MACRO_CONFIG_STR(TcAutoNotifyName, tc_auto_notify_name, 128, "", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Comma-separated names to notify when they join")
+MACRO_CONFIG_STR(TcAutoNotifyMsg, tc_auto_notify_msg, 256, "Your Fav Person Has Joined!", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Echo message when a listed player joins (@nick is replaced with their name)")
+MACRO_CONFIG_INT(TcNotifyOnMove, tc_notify_on_move, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Notify when your player is moved while the window is inactive")
+MACRO_CONFIG_INT(TcNotifyOnSwitch, tc_notify_on_switch, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Notify when you press a switch button")
+
+MACRO_CONFIG_INT(TcCursorTrail, tc_cursor_trail, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show a trail behind the ingame cursor")
+MACRO_CONFIG_INT(TcCursorTrailMode, tc_cursor_trail_mode, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Cursor trail mode (0=overlay, 1=background)")
+MACRO_CONFIG_INT(TcCursorTrailFade, tc_cursor_trail_fade, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Fade out the cursor trail at the end")
+MACRO_CONFIG_INT(TcCursorTrailLength, tc_cursor_trail_length, 400, 50, 5000, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Cursor trail lifetime in milliseconds")
+MACRO_CONFIG_INT(TcCursorTrailColorMode, tc_cursor_trail_color_mode, 0, 0, 2, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Cursor trail color mode (0=static, 1=rainbow, 2=gradient)")
+MACRO_CONFIG_COL(TcCursorTrailColor, tc_cursor_trail_color, 0xFFFFFFFF, CFGFLAG_CLIENT | CFGFLAG_SAVE | CFGFLAG_COLALPHA, "Cursor trail color")
+MACRO_CONFIG_COL(TcCursorTrailColor2, tc_cursor_trail_color2, 0xAAFF80FF, CFGFLAG_CLIENT | CFGFLAG_SAVE | CFGFLAG_COLALPHA, "Cursor trail gradient color 2")
+MACRO_CONFIG_STR(TcNotifyOnSwitchText, tc_notify_on_switch_text, 128, "Pressed button @num (@type)", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Text to output when pressing a switch button (@num = number, @type = activate/deactivate)")
+
+MACRO_CONFIG_INT(TcHighProcessPriority, tc_high_process_priority, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Set DDNet process priority to high")
+MACRO_CONFIG_INT(TcDiscordNormalProcessPriority, tc_discord_normal_process_priority, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Set Discord process priority to normal")
+
+MACRO_CONFIG_INT(TcSpecMenuPrefixes, tc_specmenu_prefixes, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show prefixes next to names in the spectate menu")
+
+MACRO_CONFIG_INT(TcChatScroll, tc_chat_scroll, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Enable scrolling in chat")
+
+MACRO_CONFIG_INT(TcChatCursor, tc_chat_cursor, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Unlock the cursor while the chat is open")
+MACRO_CONFIG_INT(TcChatTagCursor, tc_chat_tag_cursor, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Tag with cursor: click a tee to insert its name into the chat")
+MACRO_CONFIG_INT(TcChatTagCursorHitbox, tc_chat_tag_cursor_hitbox, 200, 50, 500, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Tag with cursor hitbox size in percent of the tee size")
+
+MACRO_CONFIG_INT(TcShowOthersInMenu, tc_show_others_in_menu, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show the settings icon when a tee is in a menu")
+
+MACRO_CONFIG_INT(TcMenuScale, tc_menu_scale, 100, 50, 150, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Scale of the menu interface in percent")
+
+// Anti AFK
+MACRO_CONFIG_INT(TcNotifyOnMoveInSpec, tc_notify_on_move_in_spec, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show when someone moves you while spectating")
+MACRO_CONFIG_INT(TcTextOnMoveInSpec, tc_text_on_move_in_spec, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show text when someone moves you while spectating")
+MACRO_CONFIG_INT(TcTextOnMoveInSpecPosX, tc_text_on_move_in_spec_pos_x, 50, 0, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Text position X when moved in spec")
+MACRO_CONFIG_INT(TcTextOnMoveInSpecPosY, tc_text_on_move_in_spec_pos_y, 50, 0, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Text position Y when moved in spec")
+MACRO_CONFIG_INT(TcTextOnMoveInSpecRemoveOnInput, tc_text_on_move_in_spec_remove_on_input, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Remove 'moved in spec' text on any input")
+
+MACRO_CONFIG_INT(TcHideEnemyChat, tc_hide_enemy_chat, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Hide chat messages of war-list enemies")
+MACRO_CONFIG_INT(TcChatServerPrefix, tc_do_chat_server_prefix, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show server message prefix")
+MACRO_CONFIG_INT(TcChatClientPrefix, tc_do_chat_client_prefix, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show client message prefix")
+MACRO_CONFIG_INT(TcSpectatePrefix, tc_do_spec_prefix, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show spectator prefix next to names")
+MACRO_CONFIG_INT(TcWarlistPrefixes, tc_warlist_prefixes, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show warlist prefix next to names")
+MACRO_CONFIG_STR(TcClientPrefix, tc_client_prefix, 5, "— ", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Client (echo) message prefix")
+MACRO_CONFIG_STR(TcServerPrefix, tc_server_prefix, 5, "*** ", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Server message prefix")
+MACRO_CONFIG_STR(TcWarlistPrefix, tc_warlist_prefix, 5, "♦ ", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Warlist prefix")
+MACRO_CONFIG_STR(TcFriendPrefix, tc_friend_prefix, 5, "♥ ", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Friend prefix")
+MACRO_CONFIG_STR(TcSpecPrefix, tc_spec_prefix, 5, "• ", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Spectator prefix")
+
+MACRO_CONFIG_INT(TcShowOthersGhosts, tc_show_others_ghosts, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show ghosts for other players in their unpredicted position")
+MACRO_CONFIG_INT(TcSwapGhosts, tc_swap_ghosts, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show predicted players as ghost and normal players as unpredicted")
+MACRO_CONFIG_INT(TcHideFrozenGhosts, tc_hide_frozen_ghosts, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Hide Ghosts of other players if they are frozen")
+
+MACRO_CONFIG_INT(TcPredGhostsAlpha, tc_pred_ghosts_alpha, 100, 0, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Alpha of predicted ghosts (0-100)")
+MACRO_CONFIG_INT(TcUnpredGhostsAlpha, tc_unpred_ghosts_alpha, 50, 0, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Alpha of unpredicted ghosts (0-100)")
+MACRO_CONFIG_INT(TcRenderGhostAsCircle, tc_render_ghost_as_circle, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Render Ghosts as circles instead of tee")
+
+MACRO_CONFIG_INT(TcShowCenter, tc_show_center, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Draws lines to show the center of your screen/hitbox")
+MACRO_CONFIG_INT(TcShowCenterWidth, tc_show_center_width, 0, 0, 20, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Center lines width (enabled by tc_show_center)")
+MACRO_CONFIG_COL(TcShowCenterColor, tc_show_center_color, 1694498688, CFGFLAG_CLIENT | CFGFLAG_SAVE | CFGFLAG_COLALPHA, "Center lines color (enabled by tc_show_center)") // transparent red
+
+MACRO_CONFIG_INT(TcFastInput, tc_fast_input, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Uses input for prediction before the next tick")
+MACRO_CONFIG_INT(TcFastInputAmount, tc_fast_input_amount, 20, 1, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "How many milliseconds fast input will apply")
+MACRO_CONFIG_INT(TcFastInputOthers, tc_fast_input_others, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Apply fast input to other tees")
+
+MACRO_CONFIG_INT(TcAntiPingImproved, tc_antiping_improved, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Different antiping smoothing algorithm, not compatible with cl_antiping_smooth")
+MACRO_CONFIG_INT(TcAntiPingNegativeBuffer, tc_antiping_negative_buffer, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Helps in Gores. Allows internal certainty value to be negative which causes more conservative prediction")
+MACRO_CONFIG_INT(TcAntiPingStableDirection, tc_antiping_stable_direction, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Predicts optimistically along the tees stable axis to reduce delay in gaining overall stability")
+MACRO_CONFIG_INT(TcAntiPingUncertaintyScale, tc_antiping_uncertainty_scale, 150, 25, 400, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Determines uncertainty duration as a factor of ping, 100 = 1.0")
+MACRO_CONFIG_INT(TcAntiPingInteractionOnly, tc_antiping_interaction_only, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Only apply antiping smoothing to players near your view")
+MACRO_CONFIG_INT(TcAntiPingInteractionRadius, tc_antiping_interaction_radius, 800, 100, 4000, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Radius in world units for the antiping interaction filter")
+MACRO_CONFIG_INT(TcVramFallback, tc_vram_fallback, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Allocate new textures in system RAM when VRAM is full (slower, prevents out of VRAM errors)")
+MACRO_CONFIG_INT(TcTextureMaxSize, tc_texture_max_size, 0, 0, 8192, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Downscale textures above this size to save VRAM (0 = off)")
+MACRO_CONFIG_INT(TcVramLimit, tc_vram_limit, 0, 0, 32768, CFGFLAG_CLIENT | CFGFLAG_SAVE, "VRAM budget in MiB, allocations above it go to system RAM (0 = off)")
+MACRO_CONFIG_INT(TcRamLimit, tc_ram_limit, 0, 0, 65536, CFGFLAG_CLIENT | CFGFLAG_SAVE, "System RAM budget in MiB for spilled textures and staging (0 = off)")
+MACRO_CONFIG_INT(TcInfoVram, tc_info_vram, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show VRAM and RAM usage info on screen")
+MACRO_CONFIG_INT(TcInfoTextures, tc_info_textures, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show loaded map textures and their sizes on screen")
+
+MACRO_CONFIG_INT(TcColorFreeze, tc_color_freeze, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Use skin colors for frozen tees")
+MACRO_CONFIG_INT(TcColorFreezeDarken, tc_color_freeze_darken, 90, 0, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Makes color of tees darker when in freeze (0-100)")
+MACRO_CONFIG_INT(TcColorFreezeFeet, tc_color_freeze_feet, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Also use color for frozen tee feet")
+
+// Revert Variables
+MACRO_CONFIG_INT(TcSmoothPredictionMargin, tc_prediction_margin_smooth, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Makes prediction margin transition smooth, causes worse ping jitter adjustment (reverts a DDNet change)")
+MACRO_CONFIG_INT(TcFrozenKatana, tc_frozen_katana, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show katana on frozen players (reverts a DDNet change)")
+MACRO_CONFIG_INT(TcOldTeamColors, tc_old_team_colors, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Use rainbow team colors (reverts a DDNet change)")
+MACRO_CONFIG_INT(TcRevertHookLine, tc_revert_hook_line, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Revert hookline tip behavior")
+
+// Outline Variables
+MACRO_CONFIG_INT(TcOutline, tc_outline, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Draws outlines")
+MACRO_CONFIG_INT(TcOutlineEntities, tc_outline_in_entities, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Only show outlines in entities")
+
+MACRO_CONFIG_INT(TcOutlineSolid, tc_outline_solid, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Draws outline around hook and unhook")
+MACRO_CONFIG_INT(TcOutlineFreeze, tc_outline_freeze, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Draws outline around freeze and deep")
+MACRO_CONFIG_INT(TcOutlineUnfreeze, tc_outline_unfreeze, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Draws outline around unfreeze and undeep")
+MACRO_CONFIG_INT(TcOutlineKill, tc_outline_kill, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Draws outline around kill")
+MACRO_CONFIG_INT(TcOutlineTele, tc_outline_tele, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Draws outline around teleporters")
+
+MACRO_CONFIG_INT(TcOutlineWidthSolid, tc_outline_width_solid, 2, 1, 16, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Width of outline around hook and unhook")
+MACRO_CONFIG_INT(TcOutlineWidthFreeze, tc_outline_width_freeze, 2, 1, 16, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Width of outline around freeze and deep")
+MACRO_CONFIG_INT(TcOutlineWidthUnfreeze, tc_outline_width_unfreeze, 2, 1, 16, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Width of outline around unfreeze and undeep")
+MACRO_CONFIG_INT(TcOutlineWidthKill, tc_outline_width_kill, 2, 1, 16, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Width of outline around kill")
+MACRO_CONFIG_INT(TcOutlineWidthTele, tc_outline_width_tele, 2, 1, 16, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Width of outline around teleporters")
+
+MACRO_CONFIG_COL(TcOutlineColorSolid, tc_outline_color_solid, 4294901760, CFGFLAG_CLIENT | CFGFLAG_SAVE | CFGFLAG_COLALPHA, "Color of outline around hook and unhook") // 255 0 0 0
+MACRO_CONFIG_COL(TcOutlineColorFreeze, tc_outline_color_freeze, 4294901760, CFGFLAG_CLIENT | CFGFLAG_SAVE | CFGFLAG_COLALPHA, "Color of outline around freeze and deep") // 255 0 0 0
+MACRO_CONFIG_COL(TcOutlineColorUnfreeze, tc_outline_color_unfreeze, 4294901760, CFGFLAG_CLIENT | CFGFLAG_SAVE | CFGFLAG_COLALPHA, "Color of outline around unfreeze and undeep") // 255 0 0 0
+MACRO_CONFIG_COL(TcOutlineColorKill, tc_outline_color_kill, 4294901760, CFGFLAG_CLIENT | CFGFLAG_SAVE | CFGFLAG_COLALPHA, "Color of outline around kill") // 0 0 0
+MACRO_CONFIG_COL(TcOutlineColorTele, tc_outline_color_tele, 4294901760, CFGFLAG_CLIENT | CFGFLAG_SAVE | CFGFLAG_COLALPHA, "Color of outline around teleporters") // 255 0 0 0
+
+MACRO_CONFIG_INT(TcOutlineGradient, tc_outline_gradient, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Draw tile outlines with a gradient color")
+MACRO_CONFIG_COL(TcOutlineGradientColor1, tc_outline_gradient_color1, 4278255488, CFGFLAG_CLIENT | CFGFLAG_SAVE | CFGFLAG_COLALPHA, "Tile outline gradient color 1")
+MACRO_CONFIG_COL(TcOutlineGradientColor2, tc_outline_gradient_color2, 4288282496, CFGFLAG_CLIENT | CFGFLAG_SAVE | CFGFLAG_COLALPHA, "Tile outline gradient color 2")
+MACRO_CONFIG_INT(TcOutlineGradientSpeed, tc_outline_gradient_speed, 20, 0, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Tile outline gradient scroll speed (0=static gradient)")
+MACRO_CONFIG_INT(TcOutlinePulsate, tc_outline_pulsate, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Pulse tile outlines to system audio")
+MACRO_CONFIG_INT(TcOutlinePulsateStrength, tc_outline_pulsate_strength, 50, 0, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Tile outline pulsation strength")
+MACRO_CONFIG_INT(TcOutlinePulsateFilter, tc_outline_pulsate_filter, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Ignore the game's own audio and the filter list in outline pulsation")
+MACRO_CONFIG_STR(TcOutlinePulsateFilterList, tc_outline_pulsate_filter_list, 128, "discord.exe,ddnet.exe", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Process names ignored by outline pulsation (comma separated)")
+
+MACRO_CONFIG_INT(TcOutlineGradientSolid, tc_outline_gradient_solid, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Gradient outline for hook and unhook tiles")
+MACRO_CONFIG_COL(TcOutlineGradientColor2Solid, tc_outline_gradient_color2_solid, 4288282496, CFGFLAG_CLIENT | CFGFLAG_SAVE | CFGFLAG_COLALPHA, "Gradient color 2 for hook and unhook outlines")
+MACRO_CONFIG_INT(TcOutlineGradientFreeze, tc_outline_gradient_freeze, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Gradient outline for freeze and deep tiles")
+MACRO_CONFIG_COL(TcOutlineGradientColor2Freeze, tc_outline_gradient_color2_freeze, 4288282496, CFGFLAG_CLIENT | CFGFLAG_SAVE | CFGFLAG_COLALPHA, "Gradient color 2 for freeze outlines")
+MACRO_CONFIG_INT(TcOutlineGradientUnfreeze, tc_outline_gradient_unfreeze, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Gradient outline for unfreeze and undeep tiles")
+MACRO_CONFIG_COL(TcOutlineGradientColor2Unfreeze, tc_outline_gradient_color2_unfreeze, 4288282496, CFGFLAG_CLIENT | CFGFLAG_SAVE | CFGFLAG_COLALPHA, "Gradient color 2 for unfreeze outlines")
+MACRO_CONFIG_INT(TcOutlineGradientKill, tc_outline_gradient_kill, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Gradient outline for kill tiles")
+MACRO_CONFIG_COL(TcOutlineGradientColor2Kill, tc_outline_gradient_color2_kill, 4288282496, CFGFLAG_CLIENT | CFGFLAG_SAVE | CFGFLAG_COLALPHA, "Gradient color 2 for kill outlines")
+MACRO_CONFIG_INT(TcOutlineGradientTele, tc_outline_gradient_tele, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Gradient outline for teleporter tiles")
+MACRO_CONFIG_COL(TcOutlineGradientColor2Tele, tc_outline_gradient_color2_tele, 4288282496, CFGFLAG_CLIENT | CFGFLAG_SAVE | CFGFLAG_COLALPHA, "Gradient color 2 for teleporter outlines")
+
+// Indicator Variables
+MACRO_CONFIG_COL(TcIndicatorAlive, tc_indicator_alive, 255, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Color of alive tees in player indicator")
+MACRO_CONFIG_COL(TcIndicatorFreeze, tc_indicator_freeze, 65407, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Color of frozen tees in player indicator")
+MACRO_CONFIG_COL(TcIndicatorSaved, tc_indicator_dead, 0, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Color of tees who is getting saved in player indicator")
+MACRO_CONFIG_INT(TcIndicatorOffset, tc_indicator_offset, 42, 16, 200, CFGFLAG_CLIENT | CFGFLAG_SAVE, "(16-128) Offset of indicator position")
+MACRO_CONFIG_INT(TcIndicatorOffsetMax, tc_indicator_offset_max, 100, 16, 200, CFGFLAG_CLIENT | CFGFLAG_SAVE, "(16-128) Max indicator offset for variable offset setting")
+MACRO_CONFIG_INT(TcIndicatorVariableDistance, tc_indicator_variable_distance, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Indicator circles will be further away the further the tee is")
+MACRO_CONFIG_INT(TcIndicatorMaxDistance, tc_indicator_variable_max_distance, 1000, 500, 7000, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Maximum tee distance for variable offset")
+MACRO_CONFIG_INT(TcIndicatorRadius, tc_indicator_radius, 4, 1, 16, CFGFLAG_CLIENT | CFGFLAG_SAVE, "(1-16) indicator circle size")
+MACRO_CONFIG_INT(TcIndicatorOpacity, tc_indicator_opacity, 50, 0, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Opacity of indicator circles")
+MACRO_CONFIG_INT(TcPlayerIndicator, tc_player_indicator, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show radial indicator of other tees")
+MACRO_CONFIG_INT(TcPlayerIndicatorFreeze, tc_player_indicator_freeze, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Only show frozen tees in indicator")
+MACRO_CONFIG_INT(TcIndicatorTeamOnly, tc_indicator_inteam, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Only show indicator while in team")
+MACRO_CONFIG_INT(TcIndicatorTees, tc_indicator_tees, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show tees instead of circles")
+MACRO_CONFIG_INT(TcIndicatorHideVisible, tc_indicator_hide_visible_tees, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Don't show tees that are on your screen")
+
+// Above/Below Player
+MACRO_CONFIG_INT(TcNotifyWhenAbovePosPlayer, tc_notify_when_above_pos_player, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Appear text that u above player")
+MACRO_CONFIG_INT(TcNotifyWhenSamePosPlayer, tc_notify_when_same_pos_player, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Appear text that u same pos player")
+MACRO_CONFIG_INT(TcNotifyWhenBelowPosPlayer, tc_notify_when_below_pos_player, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Appear text that u below player")
+MACRO_CONFIG_INT(TcNotifyWhenPosPlayerPosX, tc_notify_when_pos_player_pos_x, 50, 0, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Appear text when u above/same/below pos player")
+MACRO_CONFIG_INT(TcNotifyWhenPosPlayerPosY, tc_notify_when_pos_player_pos_y, 75, 0, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Appear text when u above/same/below pos player")
+
+// Hud
+MACRO_CONFIG_INT(TcShowhudPlayerCheckpoint, tc_showhud_player_checkpoint, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show checkpoint in hud")
+MACRO_CONFIG_INT(TcShowhudSmallerHud, tc_showhud_smaller_hud, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "checkpoint and hud will be oneline")
+MACRO_CONFIG_INT(TcShowhudVotingPercent, tc_showhud_voting_percent, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show percent in hud")
+MACRO_CONFIG_INT(TcSizeOfHeart, tc_size_of_heart, 100, 0, 200, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Heart size")
+
+// Nameplate Gradient (BestClient port, skin mode only)
+MACRO_CONFIG_INT(TcNameplateGradient, tc_nameplate_gradient, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Gradient player nicknames")
+MACRO_CONFIG_INT(TcNameplateGradientClan, tc_nameplate_gradient_clan, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Gradient player clan tags")
+MACRO_CONFIG_INT(TcNameplateGradientEverything, tc_nameplate_gradient_everything, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Apply gradient to all rendered text")
+MACRO_CONFIG_INT(TcNameplateGradientAnimateSpeed, tc_nameplate_gradient_animate_speed, 35, 1, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Speed of the animated gradient sweep, in percent")
+
+// Motion Blur (BestClient port, Vulkan backend only)
+MACRO_CONFIG_INT(TcMotionBlur, tc_motion_blur, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Enable motion blur via previous-frame blending")
+MACRO_CONFIG_INT(TcMotionBlurStrength, tc_motion_blur_strength, 50, 0, 95, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Strength of motion blur frame blending (0-95%)")
+MACRO_CONFIG_INT(TcHudEditorAnimations, tc_hud_editor_animations, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Smooth animations in the HUD editor")
+
+// Swap Timer
+MACRO_CONFIG_INT(TcEnableSwapTimer, tc_enable_swap_timer, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Enable swap timer")
+MACRO_CONFIG_INT(TcEnableSwapTimerOnLeftSide, tc_enable_swap_timer_on_left_side, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Swap timer on left side")
+MACRO_CONFIG_INT(TcEnableSwapTimerPosY, tc_enable_swap_timer_pos_y, 50, 0, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Swap timer y")
+
+// Bind Wheel
+MACRO_CONFIG_INT(TcResetBindWheelMouse, tc_reset_bindwheel_mouse, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Reset position of mouse when opening bindwheel")
+
+// Regex chat matching
+MACRO_CONFIG_STR(TcRegexChatIgnore, tc_regex_chat_ignore, 512, "", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Filters out chat messages based on a regular expression.")
+
+// Misc visual
+MACRO_CONFIG_INT(TcWhiteFeet, tc_white_feet, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Render all feet as perfectly white base color")
+MACRO_CONFIG_STR(TcWhiteFeetSkin, tc_white_feet_skin, 255, "x_ninja", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Base skin for white feet")
+MACRO_CONFIG_INT(TcRenderWeaponsAsGun, tc_render_weapons_as_gun, 0, 0, 2, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Renders weapons as the gun sprite instead of the weapon, with the exception of hammer and ninja (1 = with hue, 2 = without hue)")
+MACRO_CONFIG_INT(TcMovingTilesEntities, tc_moving_tiles_entities, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show moving tiles in entities")
+
+MACRO_CONFIG_INT(TcMiniDebug, tc_mini_debug, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show position and angle")
+
+MACRO_CONFIG_INT(TcNotifyWhenLast, tc_last_notify, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Notify when you are last")
+MACRO_CONFIG_STR(TcNotifyWhenLastText, tc_last_notify_text, 64, "Last!", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Text for last notify")
+MACRO_CONFIG_COL(TcNotifyWhenLastColor, tc_last_notify_color, 256, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Color for last notify")
+MACRO_CONFIG_INT(TcNotifyWhenLastX, tc_last_notify_x, 20, 0, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Horizontal position for last notify as percentage of screen width")
+MACRO_CONFIG_INT(TcNotifyWhenLastY, tc_last_notify_y, 1, 0, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Vertical position for last notify as percentage of screen height")
+MACRO_CONFIG_INT(TcNotifyWhenLastSize, tc_last_notify_size, 10, 0, 50, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Font size for last notify")
+
+MACRO_CONFIG_INT(TcRenderCursorSpec, tc_cursor_in_spec, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Render your gun cursor when spectating in freeview")
+MACRO_CONFIG_INT(TcRenderCursorSpecAlpha, tc_cursor_in_spec_alpha, 100, 0, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Alpha of cursor in freeview")
+
+// MACRO_CONFIG_INT(TcRenderNameplateSpec, tc_render_nameplate_spec, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Render nameplates when spectating")
+
+MACRO_CONFIG_INT(TcTinyTees, tc_tiny_tees, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Render tees smaller")
+MACRO_CONFIG_INT(TcTinyTeeSize, tc_indicator_tees_size, 100, 85, 115, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Define the Size of the Tiny Tee")
+MACRO_CONFIG_INT(TcTinyTeesOthers, tc_tiny_tees_others, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Render other tees smaller")
+
+MACRO_CONFIG_INT(TcCursorScale, tc_cursor_scale, 100, 0, 500, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Percentage to scale the in game cursor by as a percentage (50 = half, 200 = double)")
+
+// Profiles
+MACRO_CONFIG_INT(TcProfileSkin, tc_profile_skin, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Apply skin in profiles")
+MACRO_CONFIG_INT(TcProfileName, tc_profile_name, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Apply name in profiles")
+MACRO_CONFIG_INT(TcProfileClan, tc_profile_clan, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Apply clan in profiles")
+MACRO_CONFIG_INT(TcProfileFlag, tc_profile_flag, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Apply flag in profiles")
+MACRO_CONFIG_INT(TcProfileColors, tc_profile_colors, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Apply colors in profiles")
+MACRO_CONFIG_INT(TcProfileEmote, tc_profile_emote, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Apply emote in profiles")
+MACRO_CONFIG_INT(TcProfileOverwriteClanWithEmpty, tc_profile_overwrite_clan_with_empty, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Overwrite clan name even if profile has an empty clan name")
+
+// Rainbow
+MACRO_CONFIG_INT(TcRainbowTees, tc_rainbow_tees, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Turn on rainbow client side")
+MACRO_CONFIG_INT(TcRainbowHook, tc_rainbow_hook, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Rainbow hook")
+MACRO_CONFIG_INT(TcRainbowWeapon, tc_rainbow_weapon, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Rainbow Weapons")
+
+MACRO_CONFIG_INT(TcRainbowOthers, tc_rainbow_others, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Turn on rainbow client side for others")
+MACRO_CONFIG_INT(TcRainbowMode, tc_rainbow_mode, 1, 1, 4, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Rainbow mode (1: rainbow, 2: pulse, 3: darkness, 4: random)")
+MACRO_CONFIG_INT(TcRainbowSpeed, tc_rainbow_speed, 100, 0, 10000, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Rainbow speed as a percentage (50 = half speed, 200 = double speed)")
+
+// War List
+MACRO_CONFIG_INT(TcWarList, tc_warlist, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Toggles war list visuals")
+MACRO_CONFIG_INT(TcWarListShowClan, tc_warlist_show_clan_if_war, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show clan in nameplate if there is a war")
+MACRO_CONFIG_INT(TcWarListReason, tc_warlist_reason, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show war reason")
+MACRO_CONFIG_INT(TcWarListChat, tc_warlist_chat, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show war colors in chat")
+MACRO_CONFIG_INT(TcWarListScoreboard, tc_warlist_scoreboard, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show war colors in scoreboard")
+MACRO_CONFIG_INT(TcWarListAllowDuplicates, tc_warlist_allow_duplicates, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Allow duplicate war entries")
+MACRO_CONFIG_INT(TcWarListSpectate, tc_warlist_spectate, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show war colors in spectator menu")
+
+MACRO_CONFIG_INT(TcWarListIndicator, tc_warlist_indicator, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Use warlist for indicator")
+MACRO_CONFIG_INT(TcWarListIndicatorColors, tc_warlist_indicator_colors, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show warlist colors instead of freeze colors")
+MACRO_CONFIG_INT(TcWarListIndicatorAll, tc_warlist_indicator_all, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show all groups")
+MACRO_CONFIG_INT(TcWarListIndicatorEnemy, tc_warlist_indicator_enemy, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show players from the first group")
+MACRO_CONFIG_INT(TcWarListIndicatorTeam, tc_warlist_indicator_team, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show players from second group")
+
+// Status Bar
+MACRO_CONFIG_INT(TcStatusBar, tc_statusbar, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Enable status bar")
+
+MACRO_CONFIG_INT(TcStatusBar12HourClock, tc_statusbar_12_hour_clock, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Use 12 hour clock in local time")
+MACRO_CONFIG_INT(TcStatusBarLocalTimeSeocnds, tc_statusbar_local_time_seconds, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show seconds in local time")
+MACRO_CONFIG_INT(TcStatusBarHeight, tc_statusbar_height, 8, 1, 16, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Height of the status bar")
+
+MACRO_CONFIG_COL(TcStatusBarColor, tc_statusbar_color, 3221225472, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Status bar background color")
+MACRO_CONFIG_COL(TcStatusBarTextColor, tc_statusbar_text_color, 4278190335, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Status bar text color")
+MACRO_CONFIG_INT(TcStatusBarAlpha, tc_statusbar_alpha, 75, 0, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Status bar background alpha")
+MACRO_CONFIG_INT(TcStatusBarTextAlpha, tc_statusbar_text_alpha, 100, 0, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Status bar text alpha")
+
+MACRO_CONFIG_INT(TcStatusBarLabels, tc_statusbar_labels, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show labels on status bar entries")
+MACRO_CONFIG_STR(TcStatusBarScheme, tc_statusbar_scheme, 128, "ac pf r", CFGFLAG_CLIENT | CFGFLAG_SAVE, "The order in which to show status bar items")
+
+// Trails
+MACRO_CONFIG_INT(TcTeeTrail, tc_tee_trail, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Enable Tee trails")
+MACRO_CONFIG_INT(TcTeeTrailOthers, tc_tee_trail_others, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show tee trails for other players")
+MACRO_CONFIG_INT(TcTeeTrailWidth, tc_tee_trail_width, 15, 0, 20, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Tee trail width")
+MACRO_CONFIG_INT(TcTeeTrailLength, tc_tee_trail_length, 25, 5, 200, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Tee trail length")
+MACRO_CONFIG_INT(TcTeeTrailAlpha, tc_tee_trail_alpha, 80, 1, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Tee trail alpha")
+MACRO_CONFIG_COL(TcTeeTrailColor, tc_tee_trail_color, 255, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Tee trail color")
+MACRO_CONFIG_INT(TcTeeTrailTaper, tc_tee_trail_taper, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Taper tee trail over length")
+MACRO_CONFIG_INT(TcTeeTrailFade, tc_tee_trail_fade, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Fade trail alpha over length")
+MACRO_CONFIG_INT(TcTeeTrailColorMode, tc_tee_trail_color_mode, 1, 1, 5, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Tee trail color mode (1: Solid color, 2: Current Tee color, 3: Rainbow, 4: Color based on Tee speed, 5: Random)")
+
+// Chat Reply
+MACRO_CONFIG_INT(TcAutoReplyMuted, tc_auto_reply_muted, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Auto reply to muted players with a message")
+MACRO_CONFIG_STR(TcAutoReplyMutedMessage, tc_auto_reply_muted_message, 128, "I have muted you", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Message to reply to muted players")
+MACRO_CONFIG_INT(TcAutoReplyMinimized, tc_auto_reply_minimized, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Auto reply when your game is minimized")
+MACRO_CONFIG_STR(TcAutoReplyMinimizedMessage, tc_auto_reply_minimized_message, 128, "I am not tabbed in", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Message to reply when your game is minimized")
+
+// Voting
+MACRO_CONFIG_INT(TcAutoVoteWhenFar, tc_auto_vote_when_far, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Auto vote no if you far on a map")
+MACRO_CONFIG_STR(TcAutoVoteWhenFarMessage, tc_auto_vote_when_far_message, 128, "", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Message to send when auto far vote happens, leave empty to disable")
+MACRO_CONFIG_INT(TcAutoVoteWhenFarTime, tc_auto_vote_when_far_time, 5, 0, 20, CFGFLAG_CLIENT | CFGFLAG_SAVE, "How long until auto vote far happens")
+
+// Font
+MACRO_CONFIG_STR(TcCustomFont, tc_custom_font, 255, "DejaVu Sans", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Custom font face")
+
+// Bg Draw
+MACRO_CONFIG_INT(TcBgDrawWidth, tc_bg_draw_width, 5, 1, 50, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Width of background draw strokes")
+MACRO_CONFIG_INT(TcBgDrawFadeTime, tc_bg_draw_fade_time, 0, 0, 600, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Time until strokes disappear (0 = never)")
+MACRO_CONFIG_INT(TcBgDrawMaxItems, tc_bg_draw_max_items, 128, 0, 2048, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Maximum number of strokes")
+MACRO_CONFIG_COL(TcBgDrawColor, tc_bg_draw_color, 14024576, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Color of background draw strokes")
+MACRO_CONFIG_INT(TcBgDrawAutoSaveLoad, tc_bg_draw_auto_save_load, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Automatically save and load background drawings")
+
+// Translate
+MACRO_CONFIG_STR(TcTranslateBackend, tc_translate_backend, 32, "ftapi", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Translate backends (ftapi, libretranslate)")
+MACRO_CONFIG_STR(TcTranslateTarget, tc_translate_target, 16, "en", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Translate target language (must be 2 character ISO 639 code)")
+MACRO_CONFIG_STR(TcTranslateEndpoint, tc_translate_endpoint, 256, "", CFGFLAG_CLIENT | CFGFLAG_SAVE, "For backends which need it, endpoint to use (must be https)")
+MACRO_CONFIG_STR(TcTranslateKey, tc_translate_key, 256, "", CFGFLAG_CLIENT | CFGFLAG_SAVE, "For backends which need it, api key to use")
+MACRO_CONFIG_INT(TcTranslateAuto, tc_translate_auto, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Automatically translate messages, only some backends support this (FTApi does not)")
+
+// Animations
+MACRO_CONFIG_INT(TcAnimateWheelTime, tc_animate_wheel_time, 80, 0, 1000, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Duration of emote and bind wheel animations, in milliseconds (0 == no animation, 1000 = 1 second)")
+
+// Pets
+MACRO_CONFIG_INT(TcPetShow, tc_pet_show, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show a pet")
+MACRO_CONFIG_STR(TcPetSkin, tc_pet_skin, 24, "twinbop", CFGFLAG_CLIENT | CFGFLAG_SAVE | CFGFLAG_INSENSITIVE, "Pet skin")
+MACRO_CONFIG_INT(TcPetSize, tc_pet_size, 60, 10, 500, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Size of the pet as a percentage of a normal player")
+MACRO_CONFIG_INT(TcPetAlpha, tc_pet_alpha, 90, 10, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Alpha of pet (100 = fully opaque, 50 = half transparent)")
+
+// Change name near finish
+MACRO_CONFIG_INT(TcChangeNameNearFinish, tc_change_name_near_finish, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Attempt to change your name when near finish")
+MACRO_CONFIG_STR(TcFinishName, tc_finish_name, 16, "nameless tee", CFGFLAG_CLIENT | CFGFLAG_SAVE | CFGFLAG_INSENSITIVE, "Name to change to when near finish when tc_change_name_near_finish is 1")
+
+// Flags
+MACRO_CONFIG_INT(TcTClientSettingsTabs, tc_tclient_settings_tabs, 0, 0, 65536, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Bit flags to disable settings tabs")
+
+// Volleyball
+MACRO_CONFIG_INT(TcVolleyBallBetterBall, tc_volleyball_better_ball, 1, 0, 2, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Make frozen players in volleyball look more like volleyballs (0 = disabled, 1 = in volleyball maps, 2 = always)")
+MACRO_CONFIG_STR(TcVolleyBallBetterBallSkin, tc_volleyball_better_ball_skin, 24, "Volleyball", CFGFLAG_CLIENT | CFGFLAG_SAVE | CFGFLAG_INSENSITIVE, "Player skin to use for better volleyball ball")
+
+// Mod
+MACRO_CONFIG_INT(TcShowPlayerHitBoxes, tc_show_player_hit_boxes, 0, 0, 2, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show player hit boxes (1 = predicted, 2 = predicted and unpredicted)")
+MACRO_CONFIG_INT(TcHideChatBubbles, tc_hide_chat_bubbles, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Hide your own chat bubbles, only works when authed in remote console")
+MACRO_CONFIG_INT(TcModWeapon, tc_mod_weapon, 0, 0, 1, CFGFLAG_CLIENT, "Run a command (default kill) when you point and shoot at someone, only works when authed in remote console")
+MACRO_CONFIG_STR(TcModWeaponCommand, tc_mod_weapon_command, 256, "rcon kill_pl", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Command to run with tc_mod_weapon, id is appended to end of command")
+
+// Run on join
+MACRO_CONFIG_STR(TcExecuteOnConnect, tc_execute_on_connect, 100, "", CFGFLAG_CLIENT | CFGFLAG_SAVE, "")
+MACRO_CONFIG_STR(TcExecuteOnJoin, tc_execute_on_join, 100, "", CFGFLAG_CLIENT | CFGFLAG_SAVE, "")
+MACRO_CONFIG_INT(TcExecuteOnJoinDelay, tc_execute_on_join_delay, 2, 7, 50000, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Tick delay before executing tc_execute_on_join")
+
+// Custom Communities
+MACRO_CONFIG_STR(TcCustomCommunitiesUrl, tc_custom_communities_url, 256, "https://raw.githubusercontent.com/SollyBunny/ddnet-custom-communities/refs/heads/main/custom-communities-ddnet-info.json", CFGFLAG_CLIENT | CFGFLAG_SAVE, "URL to fetch custom communities from (must be https), empty to disable")
+
+// Discord RPC
+MACRO_CONFIG_INT(TcDiscordRPC, tc_discord_rpc, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Toggle discord RPC (requires restart)") // broken
+
+MACRO_CONFIG_INT(TcShowLocalTimeSeconds, tc_show_local_time_seconds, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show local time in seconds")
+
+// Configs tab UI
+MACRO_CONFIG_INT(TcUiShowDDNet, tc_ui_show_ddnet, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show DDNet domain in Configs tab")
+MACRO_CONFIG_INT(TcUiShowTClient, tc_ui_show_tclient, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show TClient domain in Configs tab")
+MACRO_CONFIG_INT(TcUiOnlyModified, tc_ui_only_modified, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show only modified settings in Configs tab")
+MACRO_CONFIG_INT(TcUiCompactList, tc_ui_compact_list, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Use compact row layout in Configs tab")
+
+// Dummy Info
+MACRO_CONFIG_INT(TcShowhudDummyPosition, tc_showhud_dummy_position, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show ingame HUD (Dummy Position)")
+MACRO_CONFIG_INT(TcShowhudDummySpeed, tc_showhud_dummy_speed, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show ingame HUD (Dummy Speed)")
+MACRO_CONFIG_INT(TcShowhudDummyAngle, tc_showhud_dummy_angle, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show ingame HUD (Dummy Aim Angle)")
+
+
+// Dynamic Camera
+MACRO_CONFIG_INT(TcDynamicCamera, tc_dynamic_camera, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Dynamic camera: zoom depends on tee speed")
+MACRO_CONFIG_INT(TcDynamicCameraMode, tc_dynamic_camera_mode, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Dynamic camera mode (0 = zoom out with speed, 1 = zoom in with speed)")
+MACRO_CONFIG_INT(TcDynamicCameraStrength, tc_dynamic_camera_strength, 25, 0, 150, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Dynamic camera strength at full effect (%)")
+MACRO_CONFIG_INT(TcDynamicCameraSpeedMin, tc_dynamic_camera_speed_min, 200, 0, 4000, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Dynamic camera: speed where the effect starts (units/s)")
+MACRO_CONFIG_INT(TcDynamicCameraSpeedMax, tc_dynamic_camera_speed_max, 1200, 10, 4000, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Dynamic camera: speed where the effect is at full strength (units/s)")
+MACRO_CONFIG_INT(TcDynamicCameraCurve, tc_dynamic_camera_curve, 1, 0, 2, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Dynamic camera response curve (0 = linear, 1 = smooth, 2 = exponential)")
+MACRO_CONFIG_INT(TcDynamicCameraSmooth, tc_dynamic_camera_smooth, 40, 0, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Dynamic camera transition amount (0 = instant, 100 = slow and smooth)")
+MACRO_CONFIG_INT(TcDynamicCameraLimit, tc_dynamic_camera_limit, 0, 0, 1000, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Dynamic camera zoom out limit (%, 0 = unlimited)")
+MACRO_CONFIG_INT(TcDynamicCameraOthers, tc_dynamic_camera_others, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Apply dynamic camera while spectating other tees")
+MACRO_CONFIG_INT(TcDynamicCameraFreeze, tc_dynamic_camera_freeze, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Apply dynamic camera while frozen")
+MACRO_CONFIG_INT(TcDynamicCameraHook, tc_dynamic_camera_hook, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Apply dynamic camera while hooking")
+
+// Drift Camera
+MACRO_CONFIG_INT(TcDriftCamera, tc_drift_camera, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Drift camera: camera leads or lags with speed")
+MACRO_CONFIG_INT(TcDriftCameraMode, tc_drift_camera_mode, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Drift camera direction (0 = lead ahead of movement, 1 = lag behind movement)")
+MACRO_CONFIG_INT(TcDriftCameraAxis, tc_drift_camera_axis, 0, 0, 2, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Drift camera axis (0 = movement vector, 1 = horizontal only, 2 = vertical only)")
+MACRO_CONFIG_INT(TcDriftCameraStrength, tc_drift_camera_strength, 100, 0, 400, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Drift camera strength (%)")
+MACRO_CONFIG_INT(TcDriftCameraSpeedRef, tc_drift_camera_speed_ref, 700, 10, 4000, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Drift camera: speed where the offset reaches its maximum (units/s)")
+MACRO_CONFIG_INT(TcDriftCameraMaxOffset, tc_drift_camera_max_offset, 200, 0, 600, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Drift camera maximum offset (units)")
+MACRO_CONFIG_INT(TcDriftCameraSmooth, tc_drift_camera_smooth, 60, 0, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Drift camera transition amount (0 = instant, 100 = slow and smooth)")
+MACRO_CONFIG_INT(TcDriftCameraOthers, tc_drift_camera_others, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Apply drift camera while spectating other tees")
+MACRO_CONFIG_INT(TcDriftCameraFreeze, tc_drift_camera_freeze, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Apply drift camera while frozen")
+MACRO_CONFIG_INT(TcDriftCameraHook, tc_drift_camera_hook, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Apply drift camera while hooking")
+
+// Jelly Tee
+MACRO_CONFIG_INT(TcJellyTee, tc_jelly_tee, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Enable jelly tee deformation")
+MACRO_CONFIG_INT(TcJellyTeeOthers, tc_jelly_tee_others, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Apply jelly tee deformation to other players")
+MACRO_CONFIG_INT(TcJellyTeeStrength, tc_jelly_tee_strength, 500, 0, 1000, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Strength of jelly tee deformation")
+MACRO_CONFIG_INT(TcJellyTeeDuration, tc_jelly_tee_duration, 30, 1, 500, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Duration of jelly tee deformation")
+
+// Keystrokes
+MACRO_CONFIG_INT(TcKeystrokes, tc_keystrokes, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show keystrokes HUD")
+MACRO_CONFIG_INT(TcKeystrokesOpacity, tc_keystrokes_pressed_opacity, 92, 0, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Opacity of pressed keys in keystrokes (%)")
+
+// Finish Prediction
+MACRO_CONFIG_INT(TcFinishPrediction, tc_finish_prediction, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show finish prediction")
+MACRO_CONFIG_INT(TcFinishPredictionTimeMode, tc_finish_prediction_time_mode, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Finish prediction time mode (0 = remaining, 1 = predicted total)")
+MACRO_CONFIG_INT(TcFinishPredictionShowTime, tc_finish_prediction_show_time, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show the predicted time")
+MACRO_CONFIG_INT(TcFinishPredictionShowMillis, tc_finish_prediction_show_millis, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show milliseconds in the predicted time")
+MACRO_CONFIG_INT(TcFinishPredictionShowPercent, tc_finish_prediction_show_percent, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show the predicted progress percentage")
+MACRO_CONFIG_INT(TcFinishPredictionShowAlways, tc_finish_prediction_show_always, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show finish prediction before the race starts")
+MACRO_CONFIG_INT(TcFinishPredictionSpeedMode, tc_finish_prediction_speed_mode, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Prediction speed source (0 = current speed, 1 = measured average)")
+MACRO_CONFIG_INT(TcFinishPredictionSmooth, tc_finish_prediction_smooth, 60, 0, 95, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Smoothing of the predicted time (0 = instant, 95 = slow)")
+
+// Sound
+MACRO_CONFIG_INT(TcMuteOthersSounds, tc_mute_others_sounds, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Mute every sound that comes from other players")
